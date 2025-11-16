@@ -23,7 +23,7 @@ body {
 
 .header {
   height: var(--tamanho-header);
-  border-bottom: 2px solid #32b9cd;
+  border-bottom: 2px solid #C80001;
 }
 
 .header .container {
@@ -51,8 +51,9 @@ body {
 }
 
 .titulo {
-  color: #32b9cd;
+  color: #C80001;
   width: fit-content;
+  display: flex;
   font-weight: 500;
 }
 
