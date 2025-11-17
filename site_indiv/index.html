@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C.E. | Home Page</title>
+    <script src="./js/script.js"></script>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./assets/icon/kcFavicon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo"><a href="#" class="logo"><img class="logo" src="./assets/icon/kcFaviconNoBG.png" alt=""></a>Crimson Engine</h1>
+            <ul class="navbar">
+                <li class="pagina_atual">
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="">Login</a>
+                </li>
+                <li>
+                    <a href="">Cadastro</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="banner">
+        <div class="container">
+        </div>
+    </div>
+
+    <div class="secao-albuns">
+        <div class="container-albuns" id="albuns">
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+
+        </div>
+    </div>
+
+</body>
+
+<script>
+
+    let nomeAlbum = ["In the Court of the C.K", "In the Wake of Poseidon", "Lizard", "Islands", "Larks' Tongues in Aspic", "Starless and Bible Black", "Red", "Discipline"]
+    let imagemAlbum = ["./assets/img/ItCotCK_cover.webp", "./assets/img/itWoP_cover.webp", "./assets/img/Lizard_cover.jpg", "./assets/img/Islands_cover.jpg", "./assets/img/LTiA_cover.webp", "./assets/img/SaBB_cover.jpg", "./assets/img/Red_cover.jpg", "./assets/img/Discipline_cover.jpg"]
+    let anoAlbum = ["1969", "1970", "1970", "1971", "1973", "1974", "1974", "1981"]
+    let sobreAlbum = ["In The Court Of The Crimson King (com subtítulo de An Observation by King Crimson) é o álbum de estréia da banda de rock inglesa King Crimson. Foi lançado em 10 de Outubro de 1969 pela Island Records. O álbum é um dos primeiros e mais influentes do rock progressivo...", "In the Wake of Poseidon é o segundo álbum de estúdio da banda inglesa de rock progressivo King Crimson , lançado em maio de 1970 pela Island Records na Europa, Atlantic Records nos Estados Unidos, Philips Records na Austrália e Vertigo Records na Nova Zelândia...", "Lizard é o terceiro álbum de estúdio da bandabritânica de rock progressivo King Crimson, lançado em 11 de dezembro de 1970 pela Island Records no Reino Unido e em janeiro de 1971 pela Atlantic Records nos Estados Unidos e Canadá...", "Islands é o quarto álbum de estúdio da banda inglesa King Crimson, lançado em 3 de dezembro de 1971. Islands é o único álbum de estúdio a apresentar a formação da turnê de 1971-1972, composta por Robert Fripp, Mel Collins, Boz Burrell e Ian Wallace...", "Larks' Tongues in Aspic é o quinto álbum de estúdio da banda inglesa de rock progressivo King Crimson, lançado em 23 de março de 1973 pela Island Records no Reino Unido e pela Atlantic Records nos Estados Unidos e Canadá...", "Starless and Bible Black é o sexto álbum de estúdio da banda inglesa de rock progressivo King Crimson, lançado em 29 de março de 1974 pela gravadora Island Records no Reino Unido e pela Atlantic Records nos Estados Unidos e Canadá...", "Red é o sétimo álbum de estúdio da banda inglesa de rock progressivo King Crimson, lançado em outubro de 1974 pela Island Records no Reino Unido e pela Atlantic Records na América do Norte e no Japão. O álbum foi gravado no Olympic Studios em Londres...", "Discipline é o oitavo álbum de estúdio da banda inglesa de rock progressivo King Crimson, lançado pela EG Records no Reino Unido em 2 de outubro de 1981. A Warner Bros. Records lançou o álbum nos Estados Unidos no mesmo mês..."]
+    let linkAlbum = ["https://open.spotify.com/album/75ol9OP8bJaRqzGimpFHDm", "https://open.spotify.com/album/68W3ppXWhsOLOURmxzRkyA", "https://open.spotify.com/album/1UfojoqiWBYbUd3hM2RGt3", "https://open.spotify.com/album/1XA1L26tFXDVTYqYtnFFnv", "https://open.spotify.com/album/6ELt0QaMOwPGPzfdEXE839", "https://open.spotify.com/album/4ttC4XUinZXn3GMIQNrjFZ", "https://open.spotify.com/album/4mA3RKIoEoX4JlJSHueQae", "https://open.spotify.com/album/20dTbQRkxuOTkf3SFyaT2m"]
+
+    let contadorAlbum = 0;
+    while (contadorAlbum < 8) {
+        albuns.innerHTML += `
+            <div class="cartao-album">
+                <img class="foto-album" src="${imagemAlbum[contadorAlbum]}" alt="Foto de ${nomeAlbum[contadorAlbum]}">
+                <h2 class="nome-album">${nomeAlbum[contadorAlbum]}</h2>
+                <p class="ano-album">${anoAlbum[contadorAlbum]}</p>
+                <p class="sobre-album">${sobreAlbum[contadorAlbum]}</p>
+                <p><a href="${linkAlbum[contadorAlbum]}" target="_blank"><button class="botao-album"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a></p>
+            </div>
+        `
+        contadorAlbum++
+    }
+
+</script>
+
+</html>

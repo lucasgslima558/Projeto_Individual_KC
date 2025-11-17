@@ -1,0 +1,132 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #161616;
+    font-family: 'Courier New', Courier, monospace
+}
+
+:root {
+  --tamanho-header: 80px;
+  --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-footer: 65px;
+}   
+
+.container {
+    display: flex;
+    width: 90%;
+    margin: auto;
+}
+
+/* Efeitos do Header */
+
+.header {
+    height: 80px;
+}
+
+.header a {
+    text-decoration: none;
+    color: crimson;
+}
+
+.header .container {
+  height: 100%;  
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+.titulo {
+    color: crimson;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    /* verificar se posso utilizar o parâmetro "gap" */
+    gap: 40px;
+}
+
+.pagina_atual {
+    font-weight: 800;
+}
+
+.navbar {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+/* Efeitos do Banner */
+
+.banner {
+  height: var(--tamanho-banner);
+  background-image: url('../assets/img/bannerRed.jpg');
+  background-size: cover;
+}
+
+/* Efeitos da seção de álbuns */
+
+.container-albuns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 200px;
+}
+
+.secao-albuns {
+    padding-top: 100px;
+    background-color: #e9edc9;
+    display: flex;
+}
+
+.secao-albuns .botao-album {
+    background-color: #161616;
+    border-radius: 10px;
+    width: 20vh;
+    height: 5vh;
+    color: #e9edc9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#albuns .foto-album {
+    width: 350px;
+    height: 350px;
+    border-radius: 10px;
+}
+
+#albuns a {
+    text-decoration: none;
+}
+
+#albuns img {
+    width: 20px;
+    height: 20px;
+}
+
+#albuns .ano-album {
+    margin-top: 0;
+}
+
+#albuns .sobre-album {
+    margin: 35px;
+}
+
+.cartao-album {
+    padding-top: 25px;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #161616;
+}
