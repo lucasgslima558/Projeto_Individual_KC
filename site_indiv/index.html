@@ -16,16 +16,17 @@
 
     <div class="header">
         <div class="container">
-            <h1 class="titulo"><a href="#" class="logo"><img class="logo" src="./assets/icon/kcFaviconNoBG.png" alt=""></a>Crimson Engine</h1>
+            <h1 class="titulo"><a href="index.html" class="logo"><img class="logo"
+                        src="./assets/icon/kcFaviconNoBgBlack.png" alt=""></a>Crimson Engine</h1>
             <ul class="navbar">
                 <li class="pagina_atual">
-                    <a href="#">Home</a>
+                    <a href="index.html">Home</a>
                 </li>
                 <li>
-                    <a href="">Login</a>
+                    <a href="cadastro.html">Cadastro</a>
                 </li>
                 <li>
-                    <a href="">Cadastro</a>
+                    <a href="login.html">Login</a>
                 </li>
             </ul>
         </div>
@@ -36,6 +37,63 @@
         </div>
     </div>
 
+    <div class="secao-sobre-banda">
+        <div class="container-banda">
+            <img src="./assets/img/membrosBanda.jpg" alt="Logo da Banda">
+            <div class="box">King Crimson é uma banda de rock progressivo formada em 1968, em Londres, fundada por
+                Robert Fripp,
+                Michael Giles, Greg Lake, Ian McDonald e Peter Sinfield. Por mais que seja classificado principalmente
+                como rock progressivo, também incorpora elementos de música clássica, jazz, folk, heavy metal, hard
+                rock, entre outros.
+            </div>
+            <div class="box">A banda encerrou suas atividades em 2022, logo após a morte de Ian McDonald por câncer,
+                deixando uma
+                enorme influência no movimento de rock progressivo e um legado para ser reconhecido. Seu álbum de
+                estréia foi In the Court of the Crimson King (1969), sendo seu lançamento de maior sucesso, alcançando a
+                5ª posição no UK Albums Chart e 28ª no Billboard 200 (EUA). Sua discografia abrange um total de 13
+                álbuns de estúdio.
+            </div>
+            <div class="box">
+                <h2>O que é rock progressivo?</h2>
+                É um gênero musical inspirado no rock psicodélico surgido na década de 1960 e que buscava a
+                implementação de jazz, de música clássica e de outros elementos em si.
+                O rock progressivo tem como características suas composições complexas, letras poéticas e filosóficas, o
+                uso de instrumentos não tradicionais como teclados, flautas e violinos e longas faixas instrumentais;
+                resumidamente buscando expor um sentimento através de longos trechos com instrumentação elaborada e uma
+                letra complexa e introspectiva.
+            </div>
+        </div>
+    </div>
+
+    <div class="banner2">
+        <div class="container">
+        </div>
+    </div>
+
+    <!-- <div class="banner-text">
+        <h1>Membros da Banda</h1>
+    </div> --->
+
+    <div class="secao-sobre-membros">
+        <div class="container-membros">
+            <div class="membro"><img src="./assets/img/fotoRobertFripp.jpg" alt=""> Robert Fripp (16 de maio de 1946) é
+                um músico britânico, compositor e produtor musical, mais conhecido como guitarrista, fundador e mais
+                antigo membro da banda King Crimson.</div>
+            <div class="membro"><img src="./assets/img/fotoMichaelGiles.jpeg" alt=""> Michael Rex Giles (1 de março de
+                1942) é um baterista, percussionista e vocalista inglês, mais conhecido como um dos co-fundadores da
+                banda King Crimson em 1969.</div>
+            <div class="membro"><img src="./assets/img/fotoGregLake.jpeg" alt=""> Gregory Stuart Lake (10 de novembro de
+                1947 - 7 de dezembro de 2016) foi um músico, cantor e compositor inglês. Ele ganhou destaque como membro
+                fundador das bandas King Crimson e Emerson, Lake & Palmer (ELP)</div>
+            <div class="membro"><img src="./assets/img/fotoIanMcDonald.png" alt=""> Ian Richard McDonald (25 de junho de
+                1946 - 9 de fevereiro de 2022) foi um multi-instrumentista inglês, mais conhecido por ser membro
+                fundador da banda King Crimson e da Foreigner.</div>
+            <div class="membro"><img src="./assets/img/fotoPeterSinfield.jpeg" alt=""> Peter Sinfield (27 de dezembro de
+                1943 - 14 de novembro de 2024) foi um poeta e compositor inglês. Ele ganhou destaque como membro
+                fundador e letrista da banda King Crimson.</div>
+        </div>
+    </div>
+
     <div class="secao-albuns">
         <div class="container-albuns" id="albuns">
         </div>
@@ -43,7 +101,30 @@
 
     <div class="footer">
         <div class="container">
-
+            <div class="coluna1">
+                <h3>Criador</h3> Lucas Gomes Souza Lima
+            </div>
+            <div class="coluna2">
+                <h3>Páginas</h3>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="cadastro.html">Cadastro</a>
+                </li>
+                <li>
+                    <a href="login.html">Login</a>
+                </li>
+            </div>
+            <div class="coluna3">
+                <h3>Contato</h3>
+                <li>
+                    <a href="#">GitHub</a>
+                </li>
+                <li>
+                    <a href="#">Linkedin</a>
+                </li>
+            </div>
         </div>
     </div>
 
@@ -58,9 +139,10 @@
     let linkAlbum = ["https://open.spotify.com/album/75ol9OP8bJaRqzGimpFHDm", "https://open.spotify.com/album/68W3ppXWhsOLOURmxzRkyA", "https://open.spotify.com/album/1UfojoqiWBYbUd3hM2RGt3", "https://open.spotify.com/album/1XA1L26tFXDVTYqYtnFFnv", "https://open.spotify.com/album/6ELt0QaMOwPGPzfdEXE839", "https://open.spotify.com/album/4ttC4XUinZXn3GMIQNrjFZ", "https://open.spotify.com/album/4mA3RKIoEoX4JlJSHueQae", "https://open.spotify.com/album/20dTbQRkxuOTkf3SFyaT2m"]
 
     let contadorAlbum = 0;
+
     while (contadorAlbum < 8) {
         albuns.innerHTML += `
-            <div class="cartao-album">
+            <div class="card-album">
                 <img class="foto-album" src="${imagemAlbum[contadorAlbum]}" alt="Foto de ${nomeAlbum[contadorAlbum]}">
                 <h2 class="nome-album">${nomeAlbum[contadorAlbum]}</h2>
                 <p class="ano-album">${anoAlbum[contadorAlbum]}</p>
