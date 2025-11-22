@@ -11,7 +11,7 @@
     <script src="./js/sessao.js"></script>
 
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="icon" href="./assets/icon/kcFavicon.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
@@ -38,35 +38,23 @@
         </div>
     </div>
 
-
-    <!-- simulador inicio -->
-    <div class="simulador">
+    <div class="simulador" id="simu">
         <div class="container">
-            <h2>Simulador</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
-                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
-                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
-                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
-                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
-                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
-                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
-                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
-                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
-                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
-                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
-                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
-                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
+            <div class="card card-simulador">
+                <div class="card-album">
+                <img class="foto-album" src="${imagemAlbum[contadorAlbum]}" alt="Foto de ${nomeAlbum[contadorAlbum]}">
+                <h2 class="nome-album">${nomeAlbum[contadorAlbum]}</h2>
+                <p class="ano-album">${anoAlbum[contadorAlbum]}</p>
+                <p class="sobre-album">${sobreAlbum[contadorAlbum]}</p>
+                <p><a href="${linkAlbum[contadorAlbum]}" target="_blank"><button class="botao-album"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a></p>
+            </div>
+            </div>
+            <hr class="separar-card-simulador">
+            <div class="card card-simulador">
 
+            </div>
         </div>
     </div>
-    <!-- simulador fim -->
 
     <div class="footer">
         <div class="container">
@@ -76,7 +64,7 @@
             <div class="coluna2">
                 <h3>Páginas</h3>
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="./index.html">Home</a>
                 </li>
                 <li>
                     <a href="./musicas.html">Músicas</a>
@@ -85,7 +73,7 @@
                     <a href="./cadastro.html">Cadastro</a>
                 </li>
                 <li>
-                    <a href="login.html">Login</a>
+                    <a href="./login.html">Login</a>
                 </li>
             </div>
             <div class="coluna3">
@@ -100,7 +88,8 @@
         </div>
     </div>
 
-
 </body>
+
+
 
 </html>

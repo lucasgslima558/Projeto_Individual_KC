@@ -47,32 +47,29 @@
                 <div class="formulario">
                     <div class="campo">
                         <span>Nome:</span>
-                        <input id="ipt_nome" type="text" placeholder="Seu nome" />
+                        <input id="ipt_nome" type="text" placeholder="Seu nome"/>
                     </div>
                     <div class="campo">
                         <span>Username:</span>
-                        <input id="ipt_username" type="text" placeholder="Seu username" />
+                        <input id="ipt_username" type="text" placeholder="Seu username"/>
                     </div>
                     <div class="campo">
                         <div class="campo">
                             <span>Senha:</span>
-                            <input id="ipt_senha" type="password" placeholder="******" />
+                            <input id="ipt_senha" type="password" placeholder="******"/>
                         </div>
                         <div class="campo">
                             <span>Confirmação da Senha:</span>
-                            <input id="ipt_confirmacao_senha" type="password" placeholder="******" />
+                            <input id="ipt_confirmacao_senha" type="password" placeholder="******"/>
                         </div>
                         <button class="botao" onclick="cadastrarUsuario()">Cadastrar</button>
                     </div>
                     <div id="div_aguardar" class="loading-div">
-                        <img src="./assets/circle-loading.gif" id="loading-gif" />
+                        <img src="./assets/circle-loading.gif" id="loading-gif"/>
                     </div>
 
                     <div id="div_erros_login"></div>
                 </div>
-            </div>
-            <div class="login-mensagem">
-                ronaldo
             </div>
         </div>
     </div>
@@ -120,22 +117,17 @@
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
-        var nomeVar = nome_input.value;
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
-        var confirmacaoSenhaVar = confirmacao_senha_input.value;
-        var cpfVar = cpf_input.value;
-        var codigoVar = codigo_input.value;
-        var idEmpresaVincular
+        var nomeVar = ipt_nome.value;
+        var usernameVar = ipt_username.value;
+        var senhaVar = ipt_senha.value;
+        var confirmacaoSenhaVar = ipt_confirmacao_senha.value;
 
         // Verificando se há algum campo em branco
         if (
             nomeVar == "" ||
-            emailVar == "" ||
+            usernameVar == "" ||
             senhaVar == "" ||
-            confirmacaoSenhaVar == "" ||
-            cpfVar == "" ||
-            codigoVar == ""
+            confirmacaoSenhaVar == ""
         ) {
             cardErro.style.display = "block";
             mensagem_erro.innerHTML =
@@ -163,8 +155,8 @@
         if (nomeVar.length < 1) {
             mensagem_erro.innerHTML = "(Mensagem de erro para nome inválido)";
             finalizarAguardar()
-        } if ((emailVar.indexOf('@') || (email.indexOf('.')) != -1)) {
-            mensagem_erro.innerHTML = "(Mensagem de erro para email inválido)"
+        } if ((usernameVar.indexOf('@') || (email.indexOf('.')) != -1)) {
+            mensagem_erro.innerHTML = "(Mensagem de erro para username inválido)"
             finalizarAguardar()
         } if (senhaVar < 6) {
             mensagem_erro.innerHTML = "(Senha fraca)"
@@ -187,10 +179,8 @@
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar,
-                cpfServer: cpfVar,
-                idEmpresaVincularServer: idEmpresaVincular
+                emailServer: usernameVar,
+                senhaServer: senhaVar
             }),
         })
             .then(function (resposta) {
