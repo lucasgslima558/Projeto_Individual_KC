@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C.E. | Cadastro</title>
-    <script src="./js/script.js"></script>
+    <script src="./js/sessao.js"></script>
 
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="./assets/icon/kcFavicon.png">
@@ -62,7 +62,7 @@
                             <span>Confirmação da Senha:</span>
                             <input id="ipt_confirmacao_senha" type="password" placeholder="******"/>
                         </div>
-                        <button class="botao" onclick="cadastrarUsuario()">Cadastrar</button>
+                        <button class="botao" onclick="cadastrar()">Cadastrar</button>
                     </div>
                     <div id="div_aguardar" class="loading-div">
                         <img src="./assets/circle-loading.gif" id="loading-gif"/>
@@ -152,20 +152,24 @@
             }
         }
 
+    /* ideia pra mais tarde
+    var letrasMaiusculas = /[A - Z]/;
+    var letrasMinusculas = /[a - z]/;
+    var numeros = /[0-9]/;
+    var caracterEspecial = /[!|@|#|$|%|^|&|*|(|)|-|_]/;
+    */
+
         if (nomeVar.length < 1) {
-            mensagem_erro.innerHTML = "(Mensagem de erro para nome inválido)";
+            mensagem_erro.innerHTML = "(Nome inválido.)";
             finalizarAguardar()
-        } if ((usernameVar.indexOf('@') || (email.indexOf('.')) != -1)) {
-            mensagem_erro.innerHTML = "(Mensagem de erro para username inválido)"
+        } if (usernameVar.length < 1) {
+            mensagem_erro.innerHTML = "(Username inválido.)"
             finalizarAguardar()
         } if (senhaVar < 6) {
-            mensagem_erro.innerHTML = "(Senha fraca)"
+            mensagem_erro.innerHTML = "(Senha fraca, mínimo de 6 caracteres.)"
             finalizarAguardar()
         } if (confirmacaoSenhaVar != senhaVar) {
             mensagem_erro.innerHTML = "(As senhas não correspondem!)"
-            finalizarAguardar()
-        } if (cpfVar != 11) {
-            mensagem_erro.innerHTML = "(Mensagem de erro para CPF inválido)"
             finalizarAguardar()
         }
 
@@ -179,7 +183,7 @@
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
-                emailServer: usernameVar,
+                usernameServer: usernameVar,
                 senhaServer: senhaVar
             }),
         })

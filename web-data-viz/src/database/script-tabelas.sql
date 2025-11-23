@@ -96,7 +96,3 @@ INSERT INTO musica (fk_album, nome) VALUES
     (8, 'Thela Hun Ginjeet'),
     (8, 'The Sheltering Sky'),
     (8, 'Discipline');
-
-/* Views */
-
-/* Consulta */

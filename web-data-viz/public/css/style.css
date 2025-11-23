@@ -364,6 +364,7 @@ card- #albuns .ano-album {
   border: #F50000 3px solid;
   padding: 10px;
   margin-right: 10%;
+  margin-top: 3%;
 }
 
 .card_erro #mensagem_erro {

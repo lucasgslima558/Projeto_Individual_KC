@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C.E. | Login</title>
-    <script src="./js/script.js"></script>
+    <script src="./js/sessao.js"></script>
 
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="./assets/icon/kcFavicon.png">
@@ -107,10 +107,10 @@
         function entrar() {
         aguardar();
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        var usernameVar = ipt_username.value;
+        var senhaVar = ipt_senha.value;
 
-        if (emailVar == "" || senhaVar == "") {
+        if (usernameVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
             finalizarAguardar();
@@ -120,7 +120,7 @@
             setInterval(sumirMensagem, 5000)
         }
 
-        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM LOGIN: ", usernameVar);
         console.log("FORM SENHA: ", senhaVar);
 
         fetch("/usuarios/autenticar", {
@@ -129,7 +129,7 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                emailServer: emailVar,
+                usernameServer: usernameVar,
                 senhaServer: senhaVar
             })
         }).then(function (resposta) {
