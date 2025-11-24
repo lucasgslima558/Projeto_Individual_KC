@@ -39,19 +39,19 @@
     </div>
 
     <div class="simulador" id="simu">
-        <div class="container">
-            <div class="card card-simulador">
-                <div class="card-album">
-                <img class="foto-album" src="${imagemAlbum[contadorAlbum]}" alt="Foto de ${nomeAlbum[contadorAlbum]}">
-                <h2 class="nome-album">${nomeAlbum[contadorAlbum]}</h2>
-                <p class="ano-album">${anoAlbum[contadorAlbum]}</p>
-                <p class="sobre-album">${sobreAlbum[contadorAlbum]}</p>
-                <p><a href="${linkAlbum[contadorAlbum]}" target="_blank"><button class="botao-album"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a></p>
+        <div class="container-musicas">
+            <div class="card-musica" id="card_roleta">
+                <h1 class="nome-musica">Roleta de Álbuns</h1>
+                <img class="foto-musica" src="./assets/img/ItCotCK_cover.webp" alt="Foto padrão">
+                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear álbum</button></p>
+                </p>
             </div>
-            </div>
-            <hr class="separar-card-simulador">
-            <div class="card card-simulador">
-
+            <div class="card-avaliacao" id="card_avaliacao">
+                <h1 class="nome-avaliacao">Avaliação</h1>
+                Nota: <input type="number" id="ipt_nota">
+                <p>Comentário: <textarea class="textarea-avaliacao" id="ipt_comentario" placeholder="Digite aqui seu comentario..."></textarea></p>
+                <p><button onclick="avaliarMusica()" class="botao-roleta">Enviar</button></p>
+                </p>
             </div>
         </div>
     </div>
@@ -90,6 +90,98 @@
 
 </body>
 
+<script>
 
+let numMusica = 0
+
+
+// Guardar essa ideia pra depois
+function sortearMusica() {
+    numMusica = Math.floor(Math.random() * 50) + 1;
+    sessionStorage.ID_MUSICA_SORTEADA = numMusica;
+
+    // Mandar ID de música sorteado para o backend
+    fetch("/musicas/buscar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idMusica: numMusica
+        })
+    })
+            mostrarSorteio()
+    }
+
+function avaliarMusica() {
+    
+
+
+}
+
+function mostrarSorteio() {
+
+    if (numMusica > 1 && numMusica < 5) {
+        card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
+                <img class="foto-musica" src="./assets/img/ItCotCK_cover.webp" alt="Foto padrão">
+                <h3>In the Court of the Crimson King</h3>
+                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
+                <p><a href="https://open.spotify.com/album/75ol9OP8bJaRqzGimpFHDm" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
+                </p>`
+    } else if (numMusica >= 6 && numMusica < 13) {
+        card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
+                <img class="foto-musica" src="./assets/img/itWoP_cover.webp" alt="Foto padrão">
+                <h3>In the Wake of Poseidon</h3>
+                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
+                <p><a href="https://open.spotify.com/album/68W3ppXWhsOLOURmxzRkyA" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
+                </p>`
+    } else if (numMusica >= 14 && numMusica < 18) {
+        card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
+                <img class="foto-musica" src="./assets/img/Lizard_cover.jpg" alt="Foto padrão">
+                <h3>Lizard</h3>
+                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
+                <p><a href="https://open.spotify.com/album/1UfojoqiWBYbUd3hM2RGt3" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
+                </p>`
+    } else if (numMusica >= 19 && numMusica < 24) {
+        card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
+                <img class="foto-musica" src="./assets/img/Islands_cover.jpg" alt="Foto padrão">
+                <h3>Islands</h3>
+                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
+                <p><a href="https://open.spotify.com/album/1XA1L26tFXDVTYqYtnFFnv" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
+                </p>`
+    } else if (numMusica >= 25 && numMusica < 30) {
+        card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
+                <img class="foto-musica" src="./assets/img/LTiA_cover.webp" alt="Foto padrão">
+                <h3>Larks' Tongues in Aspic</h3>
+                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
+                <p><a href="https://open.spotify.com/album/6ELt0QaMOwPGPzfdEXE839" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
+                </p>`
+    } else if (numMusica >= 31 && numMusica < 38) {
+        card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
+                <img class="foto-musica" src="./assets/img/SaBB_cover.jpg" alt="Foto padrão">
+                <h3>Starless and Bible Black</h3>
+                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
+                <p><a href="https://open.spotify.com/album/4ttC4XUinZXn3GMIQNrjFZ" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
+                </p>`
+    } else if (numMusica >= 39 && numMusica < 43) {
+        card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
+                <img class="foto-musica" src="./assets/img/Red_cover.jpg" alt="Foto padrão">
+                <h3>Red</h3>
+                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
+                <p><a href="https://open.spotify.com/album/4mA3RKIoEoX4JlJSHueQae" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
+                </p>`
+    } else {
+        card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
+                <img class="foto-musica" src="./assets/img/Discipline_cover.jpg" alt="Foto padrão">
+                <h3>Discipline</h3>
+                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
+                <p><a href="https://open.spotify.com/album/20dTbQRkxuOTkf3SFyaT2m" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
+                </p>`
+    }
+
+}
+
+
+</script>
 
 </html>

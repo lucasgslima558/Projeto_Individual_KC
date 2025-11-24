@@ -1,12 +1,13 @@
 // sessão
+
 function validarSessao() {
     var email = sessionStorage.EMAIL_USUARIO;
-    var nome = sessionStorage.NOME_USUARIO;
+    var username = sessionStorage.USERNAME_USUARIO;
 
     var b_usuario = document.getElementById("b_usuario");
 
-    if (email != null && nome != null) {
-        b_usuario.innerHTML = nome;
+    if (email != null && username != null) {
+        b_usuario.innerHTML = username;
     } else {
         window.location = "../login.html";
     }
@@ -33,4 +34,3 @@ function finalizarAguardar(texto) {
         divErrosLogin.innerHTML = texto;
     }
 }
-

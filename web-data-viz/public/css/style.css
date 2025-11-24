@@ -203,7 +203,7 @@ body {
   height: 20px;
 }
 
-card- #albuns .ano-album {
+card #albuns .ano-album {
   margin-top: 0;
 }
 
@@ -415,27 +415,89 @@ input {
   width: 50px;
 }
 
-/* SIMULADOR */
+/* ROLETA DE MÚSICAS */
 
 .simulador {
   color: white;
 }
 
-.simulador .container {
+.container-musicas {
+  display: flex;
   flex-direction: column;
   overflow: scroll;
   height: var(--tamanho-simulador);
   justify-content: center;
   flex-direction: row;
   align-items: center;
+  color: #161616;
 }
 
-.simulador .card {
-  margin: 20px;
+.foto-musica {
+  width: 350px;
+  height: 350px;
+  border-radius: 10px;
 }
 
-.separar-card-simulador {
-  height: 50%;
+.container-musicas a {
+  text-decoration: none;
+}
+
+.botao-musica img {
+  height: 20px;
+  width: 20px;
+}
+
+.ano-musica {
+  margin-top: 10px;
+}
+
+.sobre-musica {
+  margin: 35px;
+}
+
+.card-musica {
+  margin: 30px;
+  width: 600px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #ecebeb;
+}
+
+.card-musica .botao-musica {
+  background-color: #161616;
+  border-radius: 10px;
+  width: 20vh;
+  height: 5vh;
+  color: #ecebeb;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.card-avaliacao {
+  margin: 30px;
+  width: 600px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #ecebeb;
+}
+
+.botao-roleta {
+  cursor: pointer;
+  border: 0;
+  border-radius: 2px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #fff;
+  background-color: #F50000;
+  width: 150px;
+  height: 30px;
+  align-self: center;
+  margin: 30px;
 }
 
 /* ALERTA */

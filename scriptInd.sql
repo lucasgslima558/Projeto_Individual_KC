@@ -2,8 +2,8 @@
 
 CREATE TABLE usuario (
 	id_usuario INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(90) NOT NULL,
-	username VARCHAR(20) NOT NULL,
+	username VARCHAR(90) NOT NULL,
+    email VARCHAR(30) NOT NULL,
     senha VARCHAR(20) NOT NULL
 );
 

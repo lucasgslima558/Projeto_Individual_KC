@@ -46,12 +46,12 @@
                 <h2>Cadastro</h2>
                 <div class="formulario">
                     <div class="campo">
-                        <span>Nome:</span>
-                        <input id="ipt_nome" type="text" placeholder="Seu nome"/>
-                    </div>
-                    <div class="campo">
                         <span>Username:</span>
                         <input id="ipt_username" type="text" placeholder="Seu username"/>
+                    </div>
+                    <div class="campo">
+                        <span>E-mail:</span>
+                        <input id="ipt_email" type="text" placeholder="exemplo@email.com"/>
                     </div>
                     <div class="campo">
                         <div class="campo">
@@ -110,21 +110,19 @@
 
 <script>
 
-    let listaEmpresasCadastradas = [];
-
     function cadastrar() {
         // aguardar();
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
-        var nomeVar = ipt_nome.value;
         var usernameVar = ipt_username.value;
+        var emailVar = ipt_email.value;
         var senhaVar = ipt_senha.value;
         var confirmacaoSenhaVar = ipt_confirmacao_senha.value;
 
         // Verificando se há algum campo em branco
         if (
-            nomeVar == "" ||
+            emailVar == "" ||
             usernameVar == "" ||
             senhaVar == "" ||
             confirmacaoSenhaVar == ""
@@ -159,12 +157,12 @@
     var caracterEspecial = /[!|@|#|$|%|^|&|*|(|)|-|_]/;
     */
 
-        if (nomeVar.length < 1) {
-            mensagem_erro.innerHTML = "(Nome inválido.)";
-            finalizarAguardar()
-        } if (usernameVar.length < 1) {
+        if (usernameVar.length < 1) {
             mensagem_erro.innerHTML = "(Username inválido.)"
             finalizarAguardar()
+        } if ((emailVar.indexOf('@') || (email.indexOf('.')) != -1)) {
+            mensagem_erro.innerHTML = "(E-mail inválido.)";
+            finalizarAguardar()    
         } if (senhaVar < 6) {
             mensagem_erro.innerHTML = "(Senha fraca, mínimo de 6 caracteres.)"
             finalizarAguardar()
@@ -182,8 +180,8 @@
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
                 usernameServer: usernameVar,
+                emailServer: emailVar,
                 senhaServer: senhaVar
             }),
         })
@@ -213,31 +211,6 @@
 
         return false;
     }
-
-    // Listando empresas cadastradas 
-    function listar() {
-        fetch("/empresas/listar", {
-            method: "GET",
-        })
-            .then(function (resposta) {
-                resposta.json().then((empresas) => {
-                    empresas.forEach((empresa) => {
-                        listaEmpresasCadastradas.push(empresa);
-
-                        console.log("listaEmpresasCadastradas")
-                        console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-                    });
-                });
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none";
-    }
-
 </script>
 
 </html>
