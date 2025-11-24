@@ -88,7 +88,7 @@ INSERT INTO musica (fk_album, nome) VALUES
     (7, 'Fallen Angel'),
     (7, 'One More Red Nightmare'),
     (7, 'Providence'),
-    (7, 'Red'),
+    (7, 'Starless'),
     (8, 'Elephant Talk'),
     (8, 'Frame by Frame'),
     (8, 'Matte Kudasai'),

@@ -138,7 +138,7 @@
         }
 
         // Verificando se o código de ativação é de alguma empresa cadastrada
-        for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+        /* for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
             if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
                 idEmpresaVincular = listaEmpresasCadastradas[i].id
                 console.log("Código de ativação válido.");
@@ -148,7 +148,7 @@
                 mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
                 finalizarAguardar();
             }
-        }
+        } */
 
     /* ideia pra mais tarde
     var letrasMaiusculas = /[A - Z]/;
@@ -211,6 +211,11 @@
 
         return false;
     }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
 </script>
 
 </html>
