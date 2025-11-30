@@ -29,7 +29,7 @@ CREATE TABLE avaliacao(
     fk_musica INT,
     FOREIGN KEY (fk_musica)
 		REFERENCES musica (id_musica),
-	nota DECIMAL(3,2) NOT NULL,
+	nota DECIMAL(3,2) NOT NULL, -- 0 até 5
     comentario TEXT(150)
 );
 

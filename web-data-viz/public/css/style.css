@@ -9,7 +9,7 @@ body {
   --tamanho-header: 80px;
   --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(85vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-footer: 65px;
 }
 
@@ -84,6 +84,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
 
 .banner2 .container {
@@ -92,18 +93,18 @@ body {
   height: 100%;
 }
 
-/* .banner-text {
-    font-weight: 600;
-    font-size: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 2;
-    width: 80%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    color: grey;
-} */
+.banner-text {
+  font-weight: 600;
+  font-size: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 80%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  color: grey;
+}
 
 
 /* Efeitos da seção sobre a banda */
@@ -249,7 +250,7 @@ card #albuns .ano-album {
   text-decoration: underline;
 }
 
-/* Login */
+/*                                                                                                                                                                                                                                  */
 
 .login {
   height: var(--tamanho-login);
@@ -354,22 +355,13 @@ card #albuns .ano-album {
   justify-content: flex-end;
 }
 
-.card_erro {
+.campo .mensagem_erro {
+  margin-top: 5px;
   display: none;
-  background-color: #fff;
-  color: black;
-  width: 230px;
-  position: fixed;
-  border-radius: 4px;
-  border: #F50000 3px solid;
-  padding: 10px;
-  margin-right: 10%;
-  margin-top: 3%;
-}
-
-.card_erro #mensagem_erro {
-  font-weight: 500;
-  font-size: 20px;
+  align-self: center;
+  color: #F50000;
+  font-weight: 200;
+  font-size: 13px;
 }
 
 .formulario .tipo_campo {
@@ -479,7 +471,7 @@ input {
 .card-avaliacao {
   margin: 30px;
   width: 600px;
-  display: flex;
+  display: none;
   align-items: center;
   flex-direction: column;
   border-radius: 10px;

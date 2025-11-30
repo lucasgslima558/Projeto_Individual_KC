@@ -1,21 +1,26 @@
 var musicaModel = require("../models/musicaModel");
 
-function buscarMusica(req, res) {
-    let idMusica = req.params.idMusica;
 
-    musicaModel.buscarMusica(idMusica)
+function buscarMusica(req, res) {
+    let idMusica = req.body.idMusica;
+    let idAlbum = req.body.idAlbum;
+
+    musicaModel.buscarMusica(idMusica, idAlbum)
         .then(function (resultado) {
             res.status(200).json(resultado);
-        }).catch(function (erro) {
+        })
+        .catch(function (erro) {
+            console.log(erro)
             res.status(500).json(erro.sqlMessage);
         })
         
 }
+
 function cadastrar(req, res) {
     var idUsuario = req.body.idUsuario;
     var idMusica = req.body.idMusica;
-    var nota = req.body.nota;
-    var comentario = req.body.comentario;
+    var nota = req.body.notaServer;
+    var comentario = req.body.comentarioServer;
 
     // Validações
     if (idUsuario == undefined) {
@@ -30,14 +35,14 @@ function cadastrar(req, res) {
 
         musicaModel.cadastrar(idUsuario, idMusica, nota, comentario)
             .then(
-                function (resposta) {
-                    res.json(resposta);
+                function (resultado) {
+                    res.json(resultado);
                 }
             ).catch(
                 function (erro) {
                     console.log(erro);
                     console.log(
-                        "\nHouve um erro ao realizar o cadastro da avaliação! Erro: ",
+                        "\nHouve um erro ao realizar o cadastro da avaliação!! Erro: ",
                         erro.sqlMessage
                     );
                     res.status(500).json(erro.sqlMessage);
