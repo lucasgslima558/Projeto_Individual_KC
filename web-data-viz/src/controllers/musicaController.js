@@ -3,9 +3,8 @@ var musicaModel = require("../models/musicaModel");
 
 function buscarMusica(req, res) {
     let idMusica = req.body.idMusica;
-    let idAlbum = req.body.idAlbum;
 
-    musicaModel.buscarMusica(idMusica, idAlbum)
+    musicaModel.buscarMusica(idMusica)
         .then(function (resultado) {
             res.status(200).json(resultado);
         })

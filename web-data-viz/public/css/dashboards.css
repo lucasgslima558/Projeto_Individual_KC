@@ -314,19 +314,18 @@ canvas {
 
 .header-left a {
   text-decoration: none;
-  color: #161616;
+  color: #ecebeb;
 }
 
 .header-left {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
   height: 100vh;
   width: 20%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   border-radius: 3px;
   border-right: 3px solid #F50000;
@@ -404,11 +403,49 @@ canvas {
   border-radius: 10px;
   text-align: center;
   padding: 10px 15px;
-  margin-bottom: 100px;
   cursor: pointer;
 }
 
 .janela .logo {
   height: 150px;
   width: 150px;
+
+  /* margin-bottom negativo feito APENAS porque a imagem possui um fundo transparente que consome espaço */
+  margin-bottom: -50%;
+}
+
+/* INDICADORES DASHBOARD */
+
+.container1 .card {
+  height: 100px;
+  width: 150px;
+  margin: 10px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.card .exibicao-card {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.container-indicadores .container1 {
+  display: flex;
+  flex-direction: row;
+}
+
+.container-indicadores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: auto;
+  color: #161616;
+}
+
+.grafico-album {
+  width: calc(100vh + 300px);
+  height: calc(100vh + 300px);
 }

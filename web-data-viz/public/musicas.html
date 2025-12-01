@@ -20,7 +20,7 @@
     <div class="header">
         <div class="container">
             <h1 class="titulo"><a href="index.html" class="logo"><img class="logo"
-                        src="./assets/icon/kcFaviconNoBgBlack.png" alt=""></a>Crimson Engine</h1>
+                        src="./assets/icon/kcFaviconNoBG.png" alt=""></a>Crimson Engine</h1>
             <ul class="navbar">
                 <li>
                     <a href="./index.html">Home</a>
@@ -47,8 +47,11 @@
         <div class="container-musicas">
             <div class="card-musica" id="card_roleta">
                 <h1 class="nome-musica">Roleta de Músicas</h1>
-                <img class="foto-musica" src="./assets/img/ItCotCK_cover.webp" alt="Foto padrão">
+                <h3 class="nome_album" id="nomeAlbum">Nome do Álbum</h3>
+                <img class="foto-musica" id="fotoMusica" src="./assets/img/ItCotCK_cover.webp" alt="Foto padrão">
+                <p><span id="nomeMusica">Nome da Música</span></p>
                 <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
+                <p><a href="https://open.spotify.com/album/1UfojoqiWBYbUd3hM2RGt3" target="_blank" id="redirecionamentoMusica"><button class="botao-musica" id="botaoMusica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
                 </p>
             </div>
             <div class="card-avaliacao" id="card_avaliacao">
@@ -101,7 +104,6 @@
     let numMusica = 0
     let numAlbum = 0
 
-    // JSON do sortearMusica(), criado globalmente para ser utilizado novamente no avaliarMusica()
     let musicaSorteada = null
 
     function sortearMusica() {
@@ -113,14 +115,38 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                idUsuario: sessionStorage.ID_USUARIO,
                 idMusica: numMusica
             })
         })
+            // explicaçãozinha pra validar na próxima aula de PI:
+            // .then registra uma função que será executada após uma Promise ser resolvida.
+            // IMPORTANTE: O que for retornado no .then SEMPRE será o valor da próxima Promise.
+            .then(function (resposta) {
+                console.log("resposta: ", resposta)
 
-        card_avaliacao.style.display = 'flex';
+                if (resposta.ok) {
+                    // Retorna um JSON da função "resposta".
+                    return resposta.json();
+                } else {
+                    // Throw rejeita a Promise, forçando o erro para exibir a mensagem.
+                    throw "Houve um erro ao tentar realizar a busca de músicas!";
+                }
 
-        mostrarSorteio()
+            })
+            // Resolução da Promise "resposta" se torna o argumento da outra, sendo assim, "dados" contem as informações de JSON de "resposta".
+            .then(dados => {
+                musicaSorteada = dados[0];
+
+                card_avaliacao.style.display = 'flex';
+
+                numAlbum = musicaSorteada.id_album;
+
+                mostrarSorteio()
+
+                document.getElementById("nomeAlbum").innerHTML = musicaSorteada.nome_album;
+                document.getElementById("nomeMusica").innerHTML = musicaSorteada.nome_musica;
+            })
+
     }
 
     function avaliarMusica() {
@@ -153,7 +179,7 @@
                 }
             })
 
-
+            // .catch captura qualquer erro que tenha ocorrido e permite que você comente sobre ele.
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
@@ -164,66 +190,47 @@
     }
 
     function mostrarSorteio() {
+        document.getElementById(fotoMusica)
+        document.getElementById(botaoMusica)
+        document.getElementById(redirecionamentoMusica)
 
-        if (numMusica > 1 && numMusica < 5) {
-            card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
-                <img class="foto-musica" src="./assets/img/ItCotCK_cover.webp" alt="Foto padrão">
-                <h3>In the Court of the Crimson King</h3>
-                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
-                <p><a href="https://open.spotify.com/album/75ol9OP8bJaRqzGimpFHDm" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
-                </p>`
-        } else if (numMusica >= 6 && numMusica < 13) {
-            card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
-                <img class="foto-musica" src="./assets/img/itWoP_cover.webp" alt="Foto padrão">
-                <h3>In the Wake of Poseidon</h3>
-                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
-                <p><a href="https://open.spotify.com/album/68W3ppXWhsOLOURmxzRkyA" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
-                </p>`
-        } else if (numMusica >= 14 && numMusica < 18) {
-            card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
-                <img class="foto-musica" src="./assets/img/Lizard_cover.jpg" alt="Foto padrão">
-                <h3>Lizard</h3>
-                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
-                <p><a href="https://open.spotify.com/album/1UfojoqiWBYbUd3hM2RGt3" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
-                </p>`
-        } else if (numMusica >= 19 && numMusica < 24) {
-            card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
-                <img class="foto-musica" src="./assets/img/Islands_cover.jpg" alt="Foto padrão">
-                <h3>Islands</h3>
-                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
-                <p><a href="https://open.spotify.com/album/1XA1L26tFXDVTYqYtnFFnv" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
-                </p>`
-        } else if (numMusica >= 25 && numMusica < 30) {
-            card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
-                <img class="foto-musica" src="./assets/img/LTiA_cover.webp" alt="Foto padrão">
-                <h3>Larks' Tongues in Aspic</h3>
-                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
-                <p><a href="https://open.spotify.com/album/6ELt0QaMOwPGPzfdEXE839" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
-                </p>`
-        } else if (numMusica >= 31 && numMusica < 38) {
-            card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
-                <img class="foto-musica" src="./assets/img/SaBB_cover.jpg" alt="Foto padrão">
-                <h3>Starless and Bible Black</h3>
-                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
-                <p><a href="https://open.spotify.com/album/4ttC4XUinZXn3GMIQNrjFZ" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
-                </p>`
-        } else if (numMusica >= 39 && numMusica < 43) {
-            card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
-                <img class="foto-musica" src="./assets/img/Red_cover.jpg" alt="Foto padrão">
-                <h3>Red</h3>
-                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
-                <p><a href="https://open.spotify.com/album/4mA3RKIoEoX4JlJSHueQae" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
-                </p>`
-        } else {
-            card_roleta.innerHTML = `<h1 class="nome-musica">Roleta de Músicas</h1>
-                <img class="foto-musica" src="./assets/img/Discipline_cover.jpg" alt="Foto padrão">
-                <h3>Discipline</h3>
-                <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
-                <p><a href="https://open.spotify.com/album/20dTbQRkxuOTkf3SFyaT2m" target="_blank"><button class="botao-musica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
-                </p>`
-        }
+
+        if (numAlbum == 1) {
+            fotoMusica.src = './assets/img/ItCotCK_cover.webp'
+            botaoMusica.style.display = 'flex';
+            redirecionamentoMusica.href = 'https://open.spotify.com/album/75ol9OP8bJaRqzGimpFHDm';
+        } else if (numAlbum == 2) {
+            fotoMusica.src = './assets/img/itWoP_cover.webp'
+            botaoMusica.style.display = 'flex';
+            redirecionamentoMusica.href = 'https://open.spotify.com/album/68W3ppXWhsOLOURmxzRkyA';
+        } else if (numAlbum == 3) {
+            fotoMusica.src = './assets/img/Lizard_cover.jpg'
+            botaoMusica.style.display = 'flex';
+            redirecionamentoMusica.href = 'https://open.spotify.com/album/1UfojoqiWBYbUd3hM2RGt3';
+        } else if (numAlbum == 4) {
+            fotoMusica.src = './assets/img/Islands_cover.jpg'
+            botaoMusica.style.display = 'flex';
+            redirecionamentoMusica.href = 'https://open.spotify.com/album/1XA1L26tFXDVTYqYtnFFnv';
+        } else if (numAlbum == 5) {
+            fotoMusica.src = './assets/img/LTiA_cover.webp'
+            botaoMusica.style.display = 'flex';
+            redirecionamentoMusica.href = 'https://open.spotify.com/album/6ELt0QaMOwPGPzfdEXE839';
+        } else if (numAlbum == 6) {
+            fotoMusica.src = './assets/img/SaBB_cover.jpg'
+            botaoMusica.style.display = 'flex';
+            redirecionamentoMusica.href =  'https://open.spotify.com/album/4ttC4XUinZXn3GMIQNrjFZ';
+        } else if (numAlbum == 7) {
+            fotoMusica.src = './assets/img/Red_cover.jpg'
+            botaoMusica.style.display = 'flex';
+            redirecionamentoMusica.href = 'https://open.spotify.com/album/4mA3RKIoEoX4JlJSHueQae';
+        } else if (numAlbum == 8) {
+            fotoMusica.src = './assets/img/Discipline_cover.jpg'
+            botaoMusica.style.display = 'flex';
+            redirecionamentoMusica.href = 'https://open.spotify.com/album/20dTbQRkxuOTkf3SFyaT2m';
+        } 
 
     }
+
 
 
 </script>

@@ -16,8 +16,8 @@
 
     <div class="header">
         <div class="container">
-            <h1 class="titulo"><a href="index.html" class="logo"><img class="logo"
-                        src="./assets/icon/kcFaviconNoBgBlack.png" alt=""></a>Crimson Engine</h1>
+            <h1 class="titulo"><a href="index.html" class="logo"><img class="logo" src="./assets/icon/kcFaviconNoBG.png"
+                        alt=""></a>Crimson Engine</h1>
             <ul class="navbar">
                 <li>
                     <a href="./index.html">Home</a>
@@ -36,6 +36,12 @@
     </div>
 
     <div class="login">
+
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
         <div class="container">
             <div class="card card-cadastro">
                 <h2>Cadastro</h2>
@@ -43,32 +49,30 @@
                     <div class="campo">
                         <span>Username:</span>
                         <input id="ipt_username" type="text" placeholder="Seu username" onkeyup="validarInput()" />
-                        <span id="erro_username" class="mensagem_erro">Ronaldo</span>
+                        <span class="mensagem_erro erro_username"></span>
                     </div>
                     <div class="campo">
                         <span>E-mail:</span>
                         <input id="ipt_email" type="text" placeholder="exemplo@email.com" onkeyup="validarInput()" />
-                        <span id="erro_email" class="mensagem_erro">Ronaldo</span>
+                        <span lass="mensagem_erro erro_email"></span>
                     </div>
                     <div class="campo">
                         <div class="campo">
                             <span>Senha:</span>
                             <input id="ipt_senha" type="password" placeholder="******" onkeyup="validarInput()" />
-                            <span id="erro_senha" class="mensagem_erro">Ronaldo</span>
+                            <span class="mensagem_erro erro_senha"></span>
                         </div>
                         <div class="campo">
                             <span>Confirmação da Senha:</span>
                             <input id="ipt_confirmacao_senha" type="password" placeholder="******"
                                 onkeyup="validarInput()" />
                         </div>
-                        <span id="erro_confSenha" class="mensagem_erro">Ronaldo</span>
+                        <span class="mensagem_erro erro_confSenha"></span>
                         <button class="botao" onclick="cadastrar()">Cadastrar</button>
                     </div>
                     <div id="div_aguardar" class="loading-div">
                         <img src="./assets/circle-loading.gif" id="loading-gif" />
                     </div>
-
-                    <div id="div_erros_login"></div>
                 </div>
             </div>
         </div>
@@ -110,6 +114,8 @@
 
 <script>
 
+    var erro = false
+
     function validarInput() {
         var usernameVar = ipt_username.value;
         var emailVar = ipt_email.value;
@@ -121,53 +127,57 @@
         var numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
         var caracterEspecial = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '|', '^', '_', '-']
 
-        var erro = false
+        erro = false
 
         if (usernameVar.length < 1) {
-            mensagem_erro.innerHTML = "(Username inválido.)"
+            erro_username.innerHTML = "(Username inválido.)"
             erro = true
         } if ((emailVar.indexOf('@') || (emailVar.indexOf('.')) != -1)) {
-            mensagem_erro.innerHTML = "(E-mail inválido.)";
+            erro_email.innerHTML = "(E-mail inválido.)";
             erro = true
         } if (senhaVar < 6) {
-            mensagem_erro.innerHTML = "(Senha fraca, mínimo de 6 caracteres.)"
+            erro_senha.innerHTML = "(Senha fraca, mínimo de 6 caracteres.)"
             erro = true
         }
 
 
         for (let index = 0; index < senhaVar.length; index++) {
             if (senhaVar.includes(letrasMaiusculas[index]) == false) {
-                mensagem_erro.innerHTML = "(Adicione letras maiúsculas!)"
+                erro_senha.innerHTML = "(Adicione letras maiúsculas!)"
                 erro = true
             }
         }
 
         for (let index = 0; index < senhaVar.length; index++) {
             if (senhaVar.includes(letrasMinusculas[index]) == false) {
-                mensagem_erro.innerHTML = "(Adicione letras minúsculas!)"
+                erro_senha.innerHTML = "(Adicione letras minúsculas!)"
                 erro = true
             }
         }
 
         for (let index = 0; index < senhaVar.length; index++) {
             if (senhaVar.includes(numeros[index]) == false) {
-                mensagem_erro.innerHTML = "(Senha fraca, Adicione números!)!"
+                erro_senha.innerHTML = "(Senha fraca, Adicione números!)!"
                 erro = true
             }
         }
 
         for (let index = 0; index < senhaVar.length; index++) {
             if (senhaVar.includes(caracterEspecial[index]) == false) {
-                mensagem_erro.innerHTML = "(Senha fraca, Adicione caracteres especiais!)"
+                erro_senha.innerHTML = "(Senha fraca, Adicione caracteres especiais!)"
                 erro = true
             }
         }
 
 
         if (confirmacaoSenhaVar != senhaVar) {
-            mensagem_erro.innerHTML = "(As senhas não correspondem!)"
+            erro_confSenha.innerHTML = "(As senhas não correspondem!)"
             erro = true
         }
+    }
+
+    if (erro == true) {
+        mensagem_erro.style.display = 'block';
     }
 
     function cadastrar() {
