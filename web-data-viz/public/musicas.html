@@ -113,6 +113,11 @@
 
     let musicaSorteada = null
 
+    if(sessionStorage.ID_USUARIO == null) {
+        alert('Se logue em um usuário antes de utilizar a página de roletas!')
+        validarSessao();
+    }
+
     window.onload = validarSessaoNavbar();
 
     function sortearMusica() {
