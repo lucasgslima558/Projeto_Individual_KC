@@ -17,8 +17,8 @@
     <div class="header">
         <div class="container">
             <h1 class="titulo"><a href="index.html" class="logo">
-                <img class="logo"src="./assets/icon/kcFaviconNoBG.png" alt=""></a>Crimson Engine</h1>
-            <ul class="navbar">
+                    <img class="logo" src="./assets/icon/kcFaviconNoBG.png" alt=""></a>Crimson Engine</h1>
+            <ul class="navbar" id="navbar_href">
                 <li class="pagina_atual">
                     <a href="./index.html">Home</a>
                 </li>
@@ -70,8 +70,8 @@
 
     <div class="banner2">
         <div class="container">
+            <h1 class="banner-text">Membros da Banda</h1>
         </div>
-        <h1 class="banner-text">Membros da Banda</h1>
     </div>
 
     <div class="secao-sobre-membros">
@@ -134,6 +134,8 @@
 </body>
 
 <script>
+
+    window.onload = validarSessaoNavbar();
 
     let nomeAlbum = ["In the Court of the C.K", "In the Wake of Poseidon", "Lizard", "Islands", "Larks' Tongues in Aspic", "Starless and Bible Black"]
     let imagemAlbum = ["./assets/img/ItCotCK_cover.webp", "./assets/img/itWoP_cover.webp", "./assets/img/Lizard_cover.jpg", "./assets/img/Islands_cover.jpg", "./assets/img/LTiA_cover.webp", "./assets/img/SaBB_cover.jpg"]

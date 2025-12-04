@@ -13,6 +13,21 @@ function validarSessao() {
     }
 }
 
+function validarSessaoNavbar() {
+    var usuario = sessionStorage.ID_USUARIO;
+
+    var Navbar = document.getElementById("navbar_href");
+
+    document
+
+    if (usuario != null) {
+        Navbar.innerHTML += `
+                <li>
+                <a href="./dashboard/dashboard.html">Dashboard</a>
+                </li>`
+    }
+}
+
 function limparSessao() {
     sessionStorage.clear();
     window.location = "../login.html";

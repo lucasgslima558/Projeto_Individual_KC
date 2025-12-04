@@ -5,6 +5,16 @@ function buscarResumoAlbum() {
 
     var instrucaoSql = `SELECT al.id_album,
         al.nome AS nome_album,
+        CASE 
+			WHEN al.id_album = 1 THEN 'ItCotCK'
+            WHEN al.id_album = 2 THEN 'ItWoP'
+            WHEN al.id_album = 3 THEN 'Lizard'
+            WHEN al.id_album = 4 THEN 'Islands'
+            WHEN al.id_album = 5 THEN 'LTiA'
+            WHEN al.id_album = 6 THEN 'SaBB'
+            WHEN al.id_album = 7 THEN 'Red'
+            WHEN al.id_album = 8 THEN 'Discipline'
+		END AS sigla_album,
         COUNT(a.id_avaliacao) AS qtd_avaliacoes,
         AVG(a.nota) AS media_nota,
 

@@ -19,9 +19,9 @@
 
     <div class="header">
         <div class="container">
-            <h1 class="titulo"><a href="index.html" class="logo"><img class="logo"
-                        src="./assets/icon/kcFaviconNoBG.png" alt=""></a>Crimson Engine</h1>
-            <ul class="navbar">
+            <h1 class="titulo"><a href="index.html" class="logo"><img class="logo" src="./assets/icon/kcFaviconNoBG.png"
+                        alt=""></a>Crimson Engine</h1>
+            <ul class="navbar" id="navbar_href">
                 <li>
                     <a href="./index.html">Home</a>
                 </li>
@@ -51,16 +51,23 @@
                 <img class="foto-musica" id="fotoMusica" src="./assets/img/ItCotCK_cover.webp" alt="Foto padrão">
                 <p><span id="nomeMusica">Nome da Música</span></p>
                 <p><button onclick="sortearMusica()" class="botao-roleta">Sortear música</button></p>
-                <p><a href="https://open.spotify.com/album/1UfojoqiWBYbUd3hM2RGt3" target="_blank" id="redirecionamentoMusica"><button class="botao-musica" id="botaoMusica"><img src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
+                <p><a href="https://open.spotify.com/album/1UfojoqiWBYbUd3hM2RGt3" target="_blank"
+                        id="redirecionamentoMusica"><button class="botao-musica" id="botaoMusica"><img
+                                src="./assets/icon/logoSpotify.png" class="logo"></img>Escutar no Spotify</button></a>
                 </p>
             </div>
             <div class="card-avaliacao" id="card_avaliacao">
                 <h1 class="nome-avaliacao">Avaliação</h1>
-                <p>Nota: <input type="number" id="ipt_nota"></p>
-                <p>Comentário: <textarea class="textarea-avaliacao" id="ipt_comentario"
-                        placeholder="Digite aqui seu comentario..."></textarea></p>
+                <p>Nota: <br><input type="number" id="ipt_nota"></p>
+                <p>Comentário: <br><textarea class="textarea-avaliacao" id="ipt_comentario"
+                        placeholder="Digite aqui seu comentário..."></textarea></p>
                 <p><button onclick="avaliarMusica()" class="botao-roleta">Enviar</button></p>
                 </p>
+                <div id="div_aguardar" class="loading-div">
+                    <img src="./assets/circle-loading.gif" id="loading-gif" />
+                </div>
+
+                <div id="div_erros_login"></div>
             </div>
         </div>
     </div>
@@ -106,7 +113,10 @@
 
     let musicaSorteada = null
 
+    window.onload = validarSessaoNavbar();
+
     function sortearMusica() {
+
         numMusica = Math.floor(Math.random() * 50) + 1;
 
         fetch("/musicas/buscar", {
@@ -118,22 +128,16 @@
                 idMusica: numMusica
             })
         })
-            // explicaçãozinha pra validar na próxima aula de PI:
-            // .then registra uma função que será executada após uma Promise ser resolvida.
-            // IMPORTANTE: O que for retornado no .then SEMPRE será o valor da próxima Promise.
             .then(function (resposta) {
                 console.log("resposta: ", resposta)
 
                 if (resposta.ok) {
-                    // Retorna um JSON da função "resposta".
                     return resposta.json();
                 } else {
-                    // Throw rejeita a Promise, forçando o erro para exibir a mensagem.
                     throw "Houve um erro ao tentar realizar a busca de músicas!";
                 }
 
             })
-            // Resolução da Promise "resposta" se torna o argumento da outra, sendo assim, "dados" contem as informações de JSON de "resposta".
             .then(dados => {
                 musicaSorteada = dados[0];
 
@@ -150,8 +154,33 @@
     }
 
     function avaliarMusica() {
-        var notaVar = ipt_nota.value;
+        var notaVar = Number(ipt_nota.value);
         var comentarioVar = ipt_comentario.value;
+
+        if (
+            notaVar == "" ||
+            comentarioVar == ""
+        ) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "(Mensagem de erro para todos os campos em branco)";
+
+            finalizarAguardar();
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000);
+        }
+
+
+        if ((notaVar < 0 || notaVar > 5) || notaVar == null) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = `(Nota inválida. Tem de ser entre 0 e 5.)`
+            finalizarAguardar()
+
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000);
+        }
 
         fetch("/musicas/cadastrar", {
             method: "POST",
@@ -173,6 +202,10 @@
 
                     mensagem_erro.innerHTML =
                         "Avaliação cadastrada com sucesso!";
+
+                    setTimeout(() => {
+                        cardErro.style.display = 'none';
+                    }, "2000");
 
                 } else {
                     throw "Houve um erro ao tentar realizar o cadastro!";
@@ -218,7 +251,7 @@
         } else if (numAlbum == 6) {
             fotoMusica.src = './assets/img/SaBB_cover.jpg'
             botaoMusica.style.display = 'flex';
-            redirecionamentoMusica.href =  'https://open.spotify.com/album/4ttC4XUinZXn3GMIQNrjFZ';
+            redirecionamentoMusica.href = 'https://open.spotify.com/album/4ttC4XUinZXn3GMIQNrjFZ';
         } else if (numAlbum == 7) {
             fotoMusica.src = './assets/img/Red_cover.jpg'
             botaoMusica.style.display = 'flex';
@@ -227,8 +260,12 @@
             fotoMusica.src = './assets/img/Discipline_cover.jpg'
             botaoMusica.style.display = 'flex';
             redirecionamentoMusica.href = 'https://open.spotify.com/album/20dTbQRkxuOTkf3SFyaT2m';
-        } 
+        }
 
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
     }
 
 

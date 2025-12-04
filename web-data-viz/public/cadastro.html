@@ -18,7 +18,7 @@
         <div class="container">
             <h1 class="titulo"><a href="index.html" class="logo"><img class="logo" src="./assets/icon/kcFaviconNoBG.png"
                         alt=""></a>Crimson Engine</h1>
-            <ul class="navbar">
+            <ul class="navbar" id="navbar_href">
                 <li>
                     <a href="./index.html">Home</a>
                 </li>
@@ -48,31 +48,29 @@
                 <div class="formulario">
                     <div class="campo">
                         <span>Username:</span>
-                        <input id="ipt_username" type="text" placeholder="Seu username" onkeyup="validarInput()" />
-                        <span class="mensagem_erro erro_username"></span>
+                        <input id="ipt_username" type="text" placeholder="Seu username" />
                     </div>
                     <div class="campo">
                         <span>E-mail:</span>
-                        <input id="ipt_email" type="text" placeholder="exemplo@email.com" onkeyup="validarInput()" />
-                        <span lass="mensagem_erro erro_email"></span>
+                        <input id="ipt_email" type="text" placeholder="exemplo@email.com" />
                     </div>
                     <div class="campo">
                         <div class="campo">
                             <span>Senha:</span>
-                            <input id="ipt_senha" type="password" placeholder="******" onkeyup="validarInput()" />
-                            <span class="mensagem_erro erro_senha"></span>
+                            <input id="ipt_senha" type="password" placeholder="******" />
                         </div>
                         <div class="campo">
                             <span>Confirmação da Senha:</span>
-                            <input id="ipt_confirmacao_senha" type="password" placeholder="******"
-                                onkeyup="validarInput()" />
+                            <input id="ipt_confirmacao_senha" type="password" placeholder="******" />
                         </div>
-                        <span class="mensagem_erro erro_confSenha"></span>
                         <button class="botao" onclick="cadastrar()">Cadastrar</button>
                     </div>
                     <div id="div_aguardar" class="loading-div">
                         <img src="./assets/circle-loading.gif" id="loading-gif" />
                     </div>
+
+
+                    <div id="div_erros_login"></div>
                 </div>
             </div>
         </div>
@@ -87,9 +85,6 @@
                 <h3>Páginas</h3>
                 <li>
                     <a href="./index.html">Home</a>
-                </li>
-                <li>
-                    <a href="./musicas.html">Músicas</a>
                 </li>
                 <li>
                     <a href="./cadastro.html">Cadastro</a>
@@ -114,7 +109,7 @@
 
 <script>
 
-    var erro = false
+    window.onload = validarSessaoNavbar();
 
     function validarInput() {
         var usernameVar = ipt_username.value;
@@ -122,75 +117,14 @@
         var senhaVar = ipt_senha.value;
         var confirmacaoSenhaVar = ipt_confirmacao_senha.value;
 
-        var letrasMaiusculas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-        var letrasMinusculas = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-        var numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-        var caracterEspecial = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '|', '^', '_', '-']
-
-        erro = false
-
-        if (usernameVar.length < 1) {
-            erro_username.innerHTML = "(Username inválido.)"
-            erro = true
-        } if ((emailVar.indexOf('@') || (emailVar.indexOf('.')) != -1)) {
-            erro_email.innerHTML = "(E-mail inválido.)";
-            erro = true
-        } if (senhaVar < 6) {
-            erro_senha.innerHTML = "(Senha fraca, mínimo de 6 caracteres.)"
-            erro = true
-        }
-
-
-        for (let index = 0; index < senhaVar.length; index++) {
-            if (senhaVar.includes(letrasMaiusculas[index]) == false) {
-                erro_senha.innerHTML = "(Adicione letras maiúsculas!)"
-                erro = true
-            }
-        }
-
-        for (let index = 0; index < senhaVar.length; index++) {
-            if (senhaVar.includes(letrasMinusculas[index]) == false) {
-                erro_senha.innerHTML = "(Adicione letras minúsculas!)"
-                erro = true
-            }
-        }
-
-        for (let index = 0; index < senhaVar.length; index++) {
-            if (senhaVar.includes(numeros[index]) == false) {
-                erro_senha.innerHTML = "(Senha fraca, Adicione números!)!"
-                erro = true
-            }
-        }
-
-        for (let index = 0; index < senhaVar.length; index++) {
-            if (senhaVar.includes(caracterEspecial[index]) == false) {
-                erro_senha.innerHTML = "(Senha fraca, Adicione caracteres especiais!)"
-                erro = true
-            }
-        }
-
-
-        if (confirmacaoSenhaVar != senhaVar) {
-            erro_confSenha.innerHTML = "(As senhas não correspondem!)"
-            erro = true
-        }
-    }
-
-    if (erro == true) {
-        mensagem_erro.style.display = 'block';
     }
 
     function cadastrar() {
-        // aguardar();
-
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
         var usernameVar = ipt_username.value;
         var emailVar = ipt_email.value;
         var senhaVar = ipt_senha.value;
         var confirmacaoSenhaVar = ipt_confirmacao_senha.value;
 
-        // Verificando se há algum campo em branco
         if (
             emailVar == "" ||
             usernameVar == "" ||
@@ -200,67 +134,85 @@
             cardErro.style.display = "block";
             mensagem_erro.innerHTML =
                 "(Mensagem de erro para todos os campos em branco)";
-
             finalizarAguardar();
             return false;
         } else {
             setInterval(sumirMensagem, 5000);
         }
+        if (usernameVar.length < 1) {
 
-        // Verificando se o código de ativação é de alguma empresa cadastrada
-        /* for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-            if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-                idEmpresaVincular = listaEmpresasCadastradas[i].id
-                console.log("Código de ativação válido.");
-                break;
-            } else {
-                cardErro.style.display = "block";
-                mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-                finalizarAguardar();
-            }
-        } */
-
-        // Enviando o valor da nova input
-        if (erro == false) {
-            fetch("/usuarios/cadastrar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
-                    usernameServer: usernameVar,
-                    emailServer: emailVar,
-                    senhaServer: senhaVar
-                }),
-            })
-                .then(function (resposta) {
-                    console.log("resposta: ", resposta);
-
-                    if (resposta.ok) {
-                        cardErro.style.display = "block";
-
-                        mensagem_erro.innerHTML =
-                            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-                        setTimeout(() => {
-                            window.location = "login.html";
-                        }, "2000");
-
-                        limparFormulario();
-                        finalizarAguardar();
-                    } else {
-                        throw "Houve um erro ao tentar realizar o cadastro!";
-                    }
-                })
-                .catch(function (resposta) {
-                    console.log(`#ERRO: ${resposta}`);
-                    finalizarAguardar();
-                });
-
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = "(Username inválido.)";
+            finalizarAguardar();
             return false;
+        } else {
+            setInterval(sumirMensagem, 5000);
         }
+        if ((emailVar.indexOf('@') == -1 || (emailVar.indexOf('.')) == -1)) {
+
+
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = "(E-mail inválido.)"
+            finalizarAguardar()
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000);
+        }
+        if (senhaVar < 6) {
+
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = "(Senha fraca, mínimo de 6 caracteres.)"
+            finalizarAguardar()
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000);
+        }
+        if (confirmacaoSenhaVar != senhaVar) {
+
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = "(As senhas não correspondem!)"
+            finalizarAguardar()
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000);
+        }
+
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                usernameServer: usernameVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    cardErro.style.display = "block";
+
+                    mensagem_erro.innerHTML =
+                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000");
+
+                    finalizarAguardar();
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                finalizarAguardar();
+            });
+
+        return false;
     }
 
 

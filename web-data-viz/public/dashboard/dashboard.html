@@ -33,7 +33,7 @@
     <div class="janela">
         <div class="header-left">
             <a href="./../index.html"><img class="logo" src="./../assets/icon/kcFaviconNoBgBlack.png" alt=""></a>
-            <h1>Crimson King</h1>
+            <h1>Crimson Engine</h1>
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
@@ -52,19 +52,19 @@
         <div class="container-indicadores">
             <div class="container1">
                 <div class="card">
-                    Média de Avaliações
+                    Média de Avaliações (Ponderada)
                     <span class="exibicao-card" id="media_avaliacoes">placeholder</span>
                 </div>
                 <div class="card">
-                    Avaliações Positivas
+                    Avaliações Positivas (> 2.5)
                     <span class="exibicao-card" id="qtd_avaliacoesPositivas">placeholder</span>
                 </div>
                 <div class="card">
-                    Avaliações Negativas
+                    Avaliações Negativas (< 2.4)
                     <span class="exibicao-card" id="qtd_avaliacoesNegativas">placeholder</span>
                 </div>
                 <div class="card">
-                    Álbum mais popular
+                    Álbum com mais avaliações <br>
                     <span class="exibicao-card" id="album_popular">placeholder</span>
                 </div>
                 <div class="card">
@@ -81,9 +81,6 @@
                     <div class="graph">
                         <canvas id="myChartCanvas"></canvas>
                     </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura" style="color: white"></p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -96,12 +93,15 @@
 </html>
 
 <script>
+
     b_usuario.innerHTML = sessionStorage.USERNAME_USUARIO;
 
     var usuario = 0
 
     let graficoPlotado = false;
     let proximaAtualizacao;
+
+    window.onload = validarSessao();
 
     if (graficoPlotado == false) {
         window.onload = obterDadosGrafico();
@@ -149,27 +149,27 @@ let melhor_valor = 0;
 
         // Grande FOR para decisão dos valores de indicadores e KPIs
         for (let index = 0; index < dados.length; index++) {
-            labels.push(dados[index].nome_album);
+
+            labels.push(dados[index].sigla_album);
             medias.push(dados[index].media_nota);
             quantidades.push(dados[index].qtd_avaliacoes);
 
-            const notas = dados[index].media_nota;
-            const peso = dados[index].qtd_avaliacoes;
-
-            soma_ponderada += notas * peso;
-            soma_peso += peso;
+            soma_ponderada += dados[index].media_nota * dados[index].qtd_avaliacoes;
+            soma_peso += dados[index].qtd_avaliacoes;
 
             qtd_avaliacoesPositivas += Number(dados[index].avaliacoes_positivas);
             qtd_avaliacoesNegativas += Number(dados[index].avaliacoes_negativas);
 
             if (dados[index].qtd_avaliacoes > maior_valor) {
                 maior_valor = (qtd_avaliacoesPositivas + qtd_avaliacoesNegativas)
-                album_popular = dados[index].nome_album
+                album_popular = dados[index].sigla_album
             }
+
             if ((qtd_avaliacoesPositivas + dados[index].avaliacoes_positivas) > melhor_valor) {
                 melhor_valor = qtd_avaliacoesPositivas
-                album_melhor = dados[index].nome_album
+                album_melhor = dados[index].sigla_album
             }
+
         }
 
         media_avaliacoes = (soma_ponderada / soma_peso).toFixed(2)
@@ -182,17 +182,21 @@ let melhor_valor = 0;
 
         const ctx = document.getElementById("myChartCanvas")
 
+        Chart.defaults.color = '#161616';
+
         new Chart(ctx, {
             type: "bar",
             data: {
                 labels: labels,
                 datasets: [{
                     label: 'Média das notas',
-                    data: medias
+                    data: medias,
+                    backgroundColor: '#C50000'
                 },
                 {
                     label: 'Quantidade de avaliações',
                     data: quantidades,
+                    backgroundColor: '#161616'
                 }]
             },
             options: {
@@ -201,7 +205,7 @@ let melhor_valor = 0;
                         beginAtZero: true
                     }
                 }
-            },
+            }, 
         })
 
     }
