@@ -3,7 +3,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #161616;
+  background-color: #0f0f0f;
   font-family: "Crimson Text", serif;
   font-size: 110%;
 }
@@ -26,7 +26,7 @@ body {
 
 .header {
   height: 80px;
-  background-color: #161616;
+  background-color: #0f0f0f;
   /* #F50000: Cor concisa com o "Red" do Banner, mas é uma baita cor feia.
     Seria perfeita se fosse sobre plantação de tomate, mas não é. Uso ou não uso? */
 }
@@ -181,7 +181,7 @@ body {
 
 .secao-albuns {
   padding-top: 100px;
-  background-color: #161616;
+  background-color: #0f0f0f;
   display: flex;
 }
 
@@ -447,7 +447,6 @@ input {
 .container-musicas {
   display: flex;
   flex-direction: column;
-  overflow: scroll;
   height: var(--tamanho-simulador);
   justify-content: center;
   flex-direction: row;

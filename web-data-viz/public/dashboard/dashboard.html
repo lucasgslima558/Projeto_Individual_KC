@@ -147,7 +147,7 @@ let melhor_valor = 0;
         let album_popular = '';
         let album_melhor = '';
 
-        // Grande FOR para decisão dos valores de indicadores e KPIs
+        // explica esse FOR absurdo !!!!
         for (let index = 0; index < dados.length; index++) {
 
             labels.push(dados[index].sigla_album);
@@ -165,8 +165,8 @@ let melhor_valor = 0;
                 album_popular = dados[index].sigla_album
             }
 
-            if ((qtd_avaliacoesPositivas + dados[index].avaliacoes_positivas) > melhor_valor) {
-                melhor_valor = qtd_avaliacoesPositivas
+            if (dados[index].media_nota > melhor_valor) {
+                melhor_valor = dados[index].media_nota
                 album_melhor = dados[index].sigla_album
             }
 
